@@ -3,7 +3,9 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:f="sap.f"
-    xmlns:layout="sap.ui.layout">
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core">
+    
     <Page showHeader="false" backgroundDesign="Transparent">
         <content>
             <VBox class="sapUiMediumMargin">
@@ -12,53 +14,64 @@
                         <Title text="My Profile" level="H1" titleStyle="H3" class="mainHeaderTitle" />
                         <Text text="View and manage your profile information" class="subText" />
                     </VBox>
+                    <HBox>
+                        <Button text="Edit Profile" icon="sap-icon://edit" press=".onEditPress" visible="{viewMode>/readMode}" class="sapUiTinyMarginEnd" />
+                        <Button text="Save Changes" type="Emphasized" icon="sap-icon://save" press=".onSavePress" visible="{viewMode>/editMode}" />
+                    </HBox>
                 </HBox>
 
-                <HBox gap="1.5rem" alignItems="Stretch" class="sapUiMediumMarginBottom">
-                    <VBox width="30%" class="whiteSectionCard sapUiContentPadding" alignItems="Center" justifyContent="Center">
+                <HBox justifyContent="SpaceBetween" alignItems="Stretch" class="sapUiMediumMarginBottom">
+                    <VBox width="31%" class="whiteSectionCard sapUiContentPadding" alignItems="Center" justifyContent="Center">
                         <Avatar src="{/Personal/Photo}" displaySize="XL" class="sapUiMediumMarginBottom" />
-                        <Title text="{/Personal/FullName}" level="H2" class="boldText" />
-                        <Text text="{/Personal/Email}" class="subText sapUiSmallMarginBottom" />
+                        
+                        <Title text="{/Personal/FullName}" level="H2" class="boldText sapUiSmallMarginBottom" visible="{viewMode>/readMode}" />
+                        <Input value="{/Personal/FullName}" visible="{viewMode>/editMode}" class="sapUiSmallMarginBottom" textAlign="Center" />
+                        
+                        <Text text="{/Personal/Email}" class="subText sapUiSmallMarginBottom" visible="{viewMode>/readMode}" />
+                        
                         <ObjectStatus text="Employee" state="None" inverted="true" class="roleBadge" />
                     </VBox>
 
-                    <VBox width="70%" class="whiteSectionCard sapUiContentPadding">
+                    <VBox width="67%" class="whiteSectionCard sapUiContentPadding">
                         <Title text="Personal Information" titleStyle="H4" class="sapUiSmallMarginBottom" />
                         
                         <VBox class="infoFieldGroup sapUiSmallMarginBottom">
                             <HBox alignItems="Center">
-                                <core:Icon xmlns:core="sap.ui.core" src="sap-icon://email" class="sapUiSmallMarginEnd" />
-                                <VBox>
+                                <core:Icon src="sap-icon://email" class="sapUiSmallMarginEnd" />
+                                <VBox width="100%">
                                     <Label text="Email" class="subTextSmall" />
-                                    <Text text="{/Personal/Email}" class="boldText" />
+                                    <Text text="{/Personal/Email}" class="boldText" visible="{viewMode>/readMode}" />
+                                    <Input value="{/Personal/Email}" visible="{viewMode>/editMode}" width="100%" />
                                 </VBox>
                             </HBox>
                         </VBox>
 
                         <VBox class="infoFieldGroup sapUiSmallMarginBottom">
                             <HBox alignItems="Center">
-                                <core:Icon xmlns:core="sap.ui.core" src="sap-icon://business-card" class="sapUiSmallMarginEnd" />
-                                <VBox>
+                                <core:Icon src="sap-icon://business-card" class="sapUiSmallMarginEnd" />
+                                <VBox width="100%">
                                     <Label text="Position" class="subTextSmall" />
-                                    <Text text="{/Personal/Position}" class="boldText" />
+                                    <Text text="{/Personal/Position}" class="boldText" visible="{viewMode>/readMode}" />
+                                    <Input value="{/Personal/Position}" visible="{viewMode>/editMode}" width="100%" />
                                 </VBox>
                             </HBox>
                         </VBox>
 
                         <VBox class="infoFieldGroup">
                             <HBox alignItems="Center">
-                                <core:Icon xmlns:core="sap.ui.core" src="sap-icon://building" class="sapUiSmallMarginEnd" />
-                                <VBox>
+                                <core:Icon src="sap-icon://building" class="sapUiSmallMarginEnd" />
+                                <VBox width="100%">
                                     <Label text="Department" class="subTextSmall" />
-                                    <Text text="{/Personal/Department}" class="boldText" />
+                                    <Text text="{/Personal/Department}" class="boldText" visible="{viewMode>/readMode}" />
+                                    <Input value="{/Personal/Department}" visible="{viewMode>/editMode}" width="100%" />
                                 </VBox>
                             </HBox>
                         </VBox>
                     </VBox>
                 </HBox>
 
-                <HBox gap="1.5rem">
-                    <VBox width="33%" class="whiteSectionCard sapUiContentPadding">
+                <HBox justifyContent="SpaceBetween">
+                    <VBox width="32%" class="whiteSectionCard sapUiContentPadding">
                         <Title text="Leave Statistics" titleStyle="H4" class="sapUiSmallMarginBottom" />
                         <VBox class="sapUiSmallMarginBottom">
                             <Label text="Total Leave Requests" />
@@ -78,13 +91,13 @@
                         </HBox>
                     </VBox>
 
-                    <VBox width="33%" class="whiteSectionCard sapUiContentPadding">
+                    <VBox width="32%" class="whiteSectionCard sapUiContentPadding">
                         <Title text="Performance" titleStyle="H4" class="sapUiSmallMarginBottom" />
                         <Label text="Total Ratings" />
                         <Title text="{/Stats/PerformanceRatings}" titleStyle="H3" />
                     </VBox>
 
-                    <VBox width="33%" class="whiteSectionCard sapUiContentPadding">
+                    <VBox width="32%" class="whiteSectionCard sapUiContentPadding">
                         <Title text="Account Status" titleStyle="H4" class="sapUiSmallMarginBottom" />
                         <VBox class="sapUiSmallMarginBottom">
                             <Label text="Role" />

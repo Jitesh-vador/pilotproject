@@ -1,7 +1,8 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel"
-], function (Controller, JSONModel) {
+    "sap/ui/model/json/JSONModel",
+    "sap/m/MessageToast"
+], function (Controller, JSONModel, MessageToast) {
     "use strict";
 
     return Controller.extend("com.hr.portal.controller.Profile", {
@@ -25,6 +26,25 @@ sap.ui.define([
             };
             var oModel = new JSONModel(oProfileData);
             this.getView().setModel(oModel);
+
+            var oViewModel = new JSONModel({
+                editMode: false,
+                readMode: true
+            });
+            this.getView().setModel(oViewModel, "viewMode");
+        },
+
+        onEditPress: function () {
+            var oViewModel = this.getView().getModel("viewMode");
+            oViewModel.setProperty("/editMode", true);
+            oViewModel.setProperty("/readMode", false);
+        },
+
+        onSavePress: function () {
+            var oViewModel = this.getView().getModel("viewMode");
+            oViewModel.setProperty("/editMode", false);
+            oViewModel.setProperty("/readMode", true);
+            MessageToast.show("Profile updated successfully");
         }
     });
 });

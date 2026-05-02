@@ -6,73 +6,42 @@ sap.ui.define([
 
     return Controller.extend("com.hr.portal.controller.Dashboard", {
         onInit: function () {
-            var oDashModel = new JSONModel({
-                TotalEmployees: 0,
-                PendingLeaves: 0,
-                AttendanceAlertsCount: 0,
-                DeptDistribution: [],
-                MonthlyLeaveTrend: [],
-                AlertList: []
-            });
-            this.getView().setModel(oDashModel, "dashLocal");
-
-            // Fetch data after metadata is loaded to ensure OData services are ready
-            this.getOwnerComponent().getModel().metadataLoaded().then(this._fetchDashboardData.bind(this));
+            this._loadMockData();
         },
 
-        _fetchDashboardData: function () {
-            var oMainModel = this.getOwnerComponent().getModel(); // Maps to Employees/Attendance
-            var oLeaveModel = this.getOwnerComponent().getModel("leaveModel"); // Specific model name for Leave
-            var oLocal = this.getView().getModel("dashLocal");
+        _loadMockData: function () {
+            var oMockData = {
+                TotalHeadcount: 10,
+                PendingCount: 2,
+                AttendanceAlerts: 1,
+                OnTimeRate: 92, // Changed from Open Positions to an Attendance metric
+                DeptDistribution: [
+                    { Dept: "Engineering", Count: 5 },
+                    { Dept: "Maintenance", Count: 1 },
+                    { Dept: "Operations", Count: 1 },
+                    { Dept: "Human Resources", Count: 2 },
+                    { Dept: "Aviation", Count: 1 }
+                ],
+                MonthlyLeaveTrend: [
+                    { Month: "Jan", Count: 2 },
+                    { Month: "Feb", Count: 5 },
+                    { Month: "Mar", Count: 1 },
+                    { Month: "Apr", Count: 4 },
+                    { Month: "May", Count: 1 }
+                ],
+                RecentActivity: [
+                    { EmpName: "Clark Kent", Action: "Called in Sick", Date: "Today, 08:30 AM", Status: "Absent", State: "Error", Icon: "sap-icon://decline" },
+                    { EmpName: "Diana Prince", Action: "Vacation Approved", Date: "Yesterday, 14:15 PM", Status: "Approved", State: "Success", Icon: "sap-icon://accept" },
+                    { EmpName: "Barry Allen", Action: "Submitted Leave Request", Date: "Yesterday, 09:00 AM", Status: "Pending", State: "Warning", Icon: "sap-icon://sys-enter-2" }
+                ],
+                LeaveRequests: [
+                    { EmpName: "BRUCE WAYNE", LeaveType: "Vacation", LeaveReason: "TRIP TO GOTHAM", Status: "Pending" },
+                    { EmpName: "PETER PARKER", LeaveType: "Sick Leave", LeaveReason: "FEELING WEBBY", Status: "Pending" }
+                ]
+            };
 
-            // 1. Fetch Employees (Working in your screenshot)
-            oMainModel.read("/EmployeesSet", {
-                success: function (oData) {
-                    var aEmp = oData.results;
-                    oLocal.setProperty("/TotalEmployees", aEmp.length);
-                    
-                    var mDepts = {};
-                    aEmp.forEach(emp => {
-                        var sDept = emp.DEPARTMENT || "Other";
-                        mDepts[sDept] = (mDepts[sDept] || 0) + 1;
-                    });
-                    oLocal.setProperty("/DeptDistribution", Object.keys(mDepts).map(k => ({ Dept: k, Count: mDepts[k] })));
-                }
-            });
-
-            // 2. Fetch Attendance Alerts (Missing in your screenshot)
-            oMainModel.read("/Attendance", {
-                success: function (oData) {
-                    var aAtt = oData.results;
-                    // Filter specifically for Late and Absent records
-                    var aAlerts = aAtt.filter(item => item.Status === "Late" || item.Status === "Absent");
-                    oLocal.setProperty("/AttendanceAlertsCount", aAlerts.length);
-                    oLocal.setProperty("/AlertList", aAlerts);
-                }
-            });
-
-            // 3. Fetch Leave Requests using the 'leaveModel'
-            oLeaveModel.read("/LeaveRequests", {
-                success: function (oData) {
-                    var aLeaves = oData.results;
-                    
-                    // Filter for 'Pending' status as required
-                    var iPending = aLeaves.filter(l => l.Status === "Pending").length;
-                    oLocal.setProperty("/PendingLeaves", iPending);
-
-                    // Group by Month for the Bar Chart
-                    var mMonths = {};
-                    aLeaves.forEach(leave => {
-                        var sDate = leave.FromDate || ""; // Key from your Leave model
-                        var sMonth = sDate.substring(0, 7); 
-                        if(sMonth) mMonths[sMonth] = (mMonths[sMonth] || 0) + 1;
-                    });
-                    oLocal.setProperty("/MonthlyLeaveTrend", Object.keys(mMonths).sort().map(m => ({ Month: m, Count: mMonths[m] })));
-                },
-                error: function() {
-                    console.error("Failed to read from leaveModel. Check your manifest.json datasource.");
-                }
-            });
+            var oDashModel = new JSONModel(oMockData);
+            this.getView().setModel(oDashModel, "dashLocal");
         }
     });
 });
