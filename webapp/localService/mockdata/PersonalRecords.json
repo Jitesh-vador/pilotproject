@@ -1,0 +1,37 @@
+[
+    {
+        "Date": "May 01, 2025",
+        "Status": "Present",
+        "CheckIn": "09:00 AM",
+        "CheckOut": "06:00 PM",
+        "TotalHours": "9h"
+    },
+    {
+        "Date": "May 02, 2025",
+        "Status": "Present",
+        "CheckIn": "09:15 AM",
+        "CheckOut": "06:10 PM",
+        "TotalHours": "8h 55m"
+    },
+    {
+        "Date": "May 03, 2025",
+        "Status": "Absent",
+        "CheckIn": "-",
+        "CheckOut": "-",
+        "TotalHours": "0h"
+    },
+    {
+        "Date": "May 04, 2025",
+        "Status": "Present",
+        "CheckIn": "09:05 AM",
+        "CheckOut": "06:05 PM",
+        "TotalHours": "9h"
+    },
+    {
+        "Date": "May 05, 2025",
+        "Status": "Leave Pending",
+        "CheckIn": "-",
+        "CheckOut": "-",
+        "TotalHours": "0h"
+    }
+]

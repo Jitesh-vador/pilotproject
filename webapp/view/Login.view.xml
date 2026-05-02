@@ -2,45 +2,188 @@
     controllerName="com.hr.portal.controller.Login"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core"
     xmlns:layout="sap.ui.layout"
     displayBlock="true">
     <Shell id="loginShell">
         <App id="loginApp">
-            <Page showHeader="false" backgroundDesign="List">
+            <Page
+                showHeader="false"
+                backgroundDesign="Solid">
                 <content>
-                    <VBox justifyContent="Center" alignItems="Center" class="loginContainer">
-                        <Avatar src="sap-icon://customer-and-contacts" displaySize="L" class="sapUiMediumMarginBottom loginIcon" />
-                        
-                        <Title text="Welcome to HR Portal" level="H1" titleStyle="H2" class="sapUiSmallMarginBottom" />
-                        <Text text="Please select your role and login" class="sapUiMediumMarginBottom subText" />
-
-                        <VBox width="100%" maxWidth="400px" class="loginCard">
-                            <Label text="I am an:" class="sapUiSmallMarginBottom boldText" />
-                            <SegmentedButton id="roleSelector" selectedKey="HR" width="100%" class="sapUiMediumMarginBottom">
-                                <items>
-                                    <SegmentedButtonItem text="HR Manager" key="HR" icon="sap-icon://manager" />
-                                    <SegmentedButtonItem text="Employee" key="EMP" icon="sap-icon://employee" />
-                                </items>
-                            </SegmentedButton>
-
-                            <VBox class="sapUiSmallMarginBottom">
-                                <Label text="Username" />
-                                <Input id="usernameInput" placeholder="Enter username..." />
+                    <!-- Full Page Wrapper -->
+                    <FlexBox
+                        width="100%"
+                        height="100%"
+                        justifyContent="Center"
+                        alignItems="Center"
+                        direction="Row"
+                        class="loginPageWrapper">
+                        <!-- Left Branding Panel -->
+                        <FlexBox
+                            direction="Column"
+                            justifyContent="Center"
+                            alignItems="Center"
+                            class="loginBrandPanel">
+                            <VBox
+                                alignItems="Center"
+                                justifyContent="Center"
+                                class="brandContent">
+                                <!-- Brand Icon -->
+                                <core:Icon
+                                    src="sap-icon://customer-and-contacts"
+                                    size="5rem"
+                                    color="white"
+                                    class="sapUiLargeMarginBottom"/>
+                                <!-- Brand Title -->
+                                <Title
+                                    text="HR Portal"
+                                    level="H1"
+                                    class="brandTitle"/>
+                                <!-- Brand Subtitle -->
+                                <Text
+                                    text="Enterprise Human Resource Management"
+                                    class="brandSubText"/>
+                                <!-- Feature List -->
+                                <VBox
+                                    class="brandFeatures"
+                                    alignItems="Start">
+                                    <HBox
+                                        alignItems="Center"
+                                        class="featureItem">
+                                        <core:Icon
+                                            src="sap-icon://accept"
+                                            color="white"
+                                            class="sapUiSmallMarginEnd"/>
+                                        <Text
+                                            text="Manage Employee Records"
+                                            class="featureText"/>
+                                    </HBox>
+                                    <HBox
+                                        alignItems="Center"
+                                        class="featureItem">
+                                        <core:Icon
+                                            src="sap-icon://accept"
+                                            color="white"
+                                            class="sapUiSmallMarginEnd"/>
+                                        <Text
+                                            text="Track Attendance and Leaves"
+                                            class="featureText"/>
+                                    </HBox>
+                                    <HBox
+                                        alignItems="Center"
+                                        class="featureItem">
+                                        <core:Icon
+                                            src="sap-icon://accept"
+                                            color="white"
+                                            class="sapUiSmallMarginEnd"/>
+                                        <Text
+                                            text="Manage Documents Securely"
+                                            class="featureText"/>
+                                    </HBox>
+                                    <HBox
+                                        alignItems="Center"
+                                        class="featureItem">
+                                        <core:Icon
+                                            src="sap-icon://accept"
+                                            color="white"
+                                            class="sapUiSmallMarginEnd"/>
+                                        <Text
+                                            text="Real Time HR Analytics"
+                                            class="featureText"/>
+                                    </HBox>
+                                </VBox>
                             </VBox>
-
-                            <VBox class="sapUiMediumMarginBottom">
-                                <Label text="Password" />
-                                <Input id="passwordInput" type="Password" placeholder="Enter password..." />
+                        </FlexBox>
+                        <!-- Right Login Form Panel -->
+                        <FlexBox
+                            direction="Column"
+                            justifyContent="Center"
+                            alignItems="Center"
+                            class="loginFormPanel">
+                            <VBox
+                                width="100%"
+                                class="loginFormCard">
+                                <!-- Form Header -->
+                                <VBox
+                                    alignItems="Center"
+                                    class="formHeader">
+                                    <Title
+                                        text="Welcome Back"
+                                        level="H2"
+                                        class="formTitle"/>
+                                    <Text
+                                        text="Sign in to your account to continue"
+                                        class="formSubTitle"/>
+                                </VBox>
+                                <!-- Role Selector -->
+                                <VBox class="formGroup">
+                                    <Label
+                                        text="Login As"
+                                        class="formLabel"/>
+                                    <SegmentedButton
+                                        id="roleSelector"
+                                        selectedKey="HR"
+                                        width="100%"
+                                        class="roleSegmentedBtn">
+                                        <items>
+                                            <SegmentedButtonItem
+                                                text="HR Manager"
+                                                key="HR"
+                                                icon="sap-icon://manager"/>
+                                            <SegmentedButtonItem
+                                                text="Employee"
+                                                key="EMP"
+                                                icon="sap-icon://employee"/>
+                                        </items>
+                                    </SegmentedButton>
+                                </VBox>
+                                <!-- Username Field -->
+                                <VBox class="formGroup">
+                                    <Label
+                                        text="Username"
+                                        class="formLabel"/>
+                                    <Input
+                                        id="usernameInput"
+                                        placeholder="Enter your username"
+                                        width="100%"
+                                        class="formInput"/>
+                                </VBox>
+                                <!-- Password Field -->
+                                <VBox class="formGroup">
+                                    <Label
+                                        text="Password"
+                                        class="formLabel"/>
+                                    <Input
+                                        id="passwordInput"
+                                        type="Password"
+                                        placeholder="Enter your password"
+                                        width="100%"
+                                        class="formInput"/>
+                                </VBox>
+                                <!-- Login Button -->
+                                <Button
+                                    text="Sign In"
+                                    type="Emphasized"
+                                    width="100%"
+                                    press=".onLogin"
+                                    class="loginBtn"/>
+                                <!-- Forgot Password -->
+                                <HBox
+                                    justifyContent="Center"
+                                    alignItems="Center"
+                                    class="forgotPasswordBox">
+                                    <Text
+                                        text="Having trouble signing in? "
+                                        class="forgotText"/>
+                                    <Link
+                                        text="Get Help"
+                                        press=".onForgotPassword"
+                                        class="forgotLink"/>
+                                </HBox>
                             </VBox>
-
-                            <Button text="Login to Dashboard" type="Emphasized" width="100%" press=".onLogin" class="loginBtn" />
-                            
-                            <HBox justifyContent="Center" class="sapUiSmallMarginTop">
-                                <Link text="Forgot Password?" press=".onForgotPassword" />
-                            </HBox>
-                        </VBox>
-                    </VBox>
+                        </FlexBox>
+                    </FlexBox>
                 </content>
             </Page>
         </App>

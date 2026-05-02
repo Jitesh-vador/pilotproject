@@ -1,20 +1,16 @@
 sap.ui.define([
-    "sap/ui/model/json/JSONModel",
-    "sap/ui/Device"
-], 
-function (JSONModel, Device) {
+    "sap/ui/model/odata/v2/ODataModel"
+], function (ODataModel) {
     "use strict";
-
     return {
-        /**
-         * Provides runtime information for the device the UI5 app is running on as a JSONModel.
-         * @returns {sap.ui.model.json.JSONModel} The device model.
-         */
-        createDeviceModel: function () {
-            var oModel = new JSONModel(Device);
-            oModel.setDefaultBindingMode("OneWay");
-            return oModel;
+        createHRModel: function () {
+            // Create OData Model for HR Attendance Service
+            var oHRModel = new ODataModel("/sap/opu/odata/hr/HRService/", {
+                defaultBindingMode: "TwoWay",
+                defaultCountMode: "Inline",
+                refreshAfterChange: true
+            });
+            return oHRModel;
         }
     };
-
 });

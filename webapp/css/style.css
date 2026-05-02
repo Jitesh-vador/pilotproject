@@ -395,3 +395,593 @@
 .kpiCard:hover {
     border-color: #3b82f6; /* Optional: highlights on hover */
 }
+
+
+/* ============================================
+   GLOBAL STYLES
+   ============================================ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+/* ============================================
+   LOGIN PAGE WRAPPER
+   ============================================ */
+.loginPageWrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: #f5f6fa;
+}
+/* ============================================
+   LEFT BRANDING PANEL
+   ============================================ */
+.loginBrandPanel {
+    width: 50%;
+    height: 100%;
+    min-height: 100vh;
+    background: linear-gradient(
+        135deg,
+        #1a237e 0%,
+        #0d47a1 50%,
+        #1565c0 100%
+    );
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* Brand Content Wrapper */
+.brandContent {
+    max-width: 420px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* Brand Title */
+.brandTitle .sapMTitle {
+    color: white !important;
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    margin-bottom: 0.5rem !important;
+}
+/* Brand Subtitle */
+.brandSubText .sapMText {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-size: 1rem !important;
+    text-align: center !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 2rem !important;
+}
+/* Feature List Wrapper */
+.brandFeatures {
+    width: 100%;
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+/* Feature Item Row */
+.featureItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem !important;
+}
+/* Feature Text */
+.featureItem .sapMText {
+    color: rgba(255, 255, 255, 0.90) !important;
+    font-size: 0.95rem !important;
+}
+/* Feature Icon */
+.featureItem .sapUiIcon {
+    color: white !important;
+    font-size: 1rem !important;
+}
+/* ============================================
+   RIGHT FORM PANEL
+   ============================================ */
+.loginFormPanel {
+    width: 50%;
+    height: 100%;
+    min-height: 100vh;
+    background-color: #ffffff;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* ============================================
+   LOGIN FORM CARD
+   ============================================ */
+.loginFormCard {
+    width: 100%;
+    max-width: 420px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+/* ============================================
+   FORM HEADER
+   ============================================ */
+.formHeader {
+    text-align: center;
+    margin-bottom: 2rem !important;
+    width: 100%;
+}
+/* Form Title */
+.formTitle .sapMTitle {
+    font-size: 1.8rem !important;
+    font-weight: 700 !important;
+    color: #1a237e !important;
+    margin-bottom: 0.4rem !important;
+    text-align: center !important;
+}
+/* Form Subtitle */
+.formSubTitle .sapMText {
+    color: #6b7280 !important;
+    font-size: 0.9rem !important;
+    text-align: center !important;
+    margin-top: 0.4rem !important;
+}
+/* ============================================
+   FORM GROUPS
+   ============================================ */
+.formGroup {
+    width: 100%;
+    margin-bottom: 1.2rem !important;
+}
+/* Form Label */
+.formLabel .sapMLabelText {
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    color: #374151 !important;
+    margin-bottom: 0.4rem !important;
+    display: block !important;
+}
+/* ============================================
+   FORM INPUTS
+   ============================================ */
+.formInput .sapMInputBase {
+    width: 100% !important;
+    border-radius: 8px !important;
+    border: 1.5px solid #e5e7eb !important;
+    font-size: 0.95rem !important;
+    transition: border-color 0.2s ease !important;
+}
+.formInput .sapMInputBase:focus {
+    border-color: #1a237e !important;
+    box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.1) !important;
+    outline: none !important;
+}
+.formInput .sapMInputBaseInner {
+    padding: 0.6rem 1rem !important;
+}
+/* ============================================
+   ROLE SEGMENTED BUTTON
+   ============================================ */
+.roleSegmentedBtn .sapMSegB {
+    width: 100% !important;
+    border-radius: 8px !important;
+    border: 1.5px solid #e5e7eb !important;
+    overflow: hidden !important;
+    margin-bottom: 0.5rem !important;
+}
+.roleSegmentedBtn .sapMSegBBtn {
+    flex: 1 !important;
+}
+.roleSegmentedBtn .sapMSegBBtnSel {
+    background-color: #1a237e !important;
+    color: white !important;
+}
+/* ============================================
+   LOGIN BUTTON
+   ============================================ */
+.loginBtn.sapMBtn {
+    width: 100% !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 1.5rem !important;
+}
+.loginBtn .sapMBtnInner {
+    width: 100% !important;
+    height: 48px !important;
+    border-radius: 8px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    background: linear-gradient(
+        135deg,
+        #1a237e 0%,
+        #1565c0 100%
+    ) !important;
+    border: none !important;
+    color: white !important;
+    transition: opacity 0.2s ease !important;
+}
+.loginBtn .sapMBtnInner:hover {
+    opacity: 0.9 !important;
+}
+/* ============================================
+   FORGOT PASSWORD
+   ============================================ */
+.forgotPasswordBox {
+    width: 100%;
+    margin-top: 1rem !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+}
+.forgotText .sapMText {
+    color: #6b7280 !important;
+    font-size: 0.875rem !important;
+}
+.forgotLink .sapMLnk:hover {
+    text-decoration: underline !important;
+    color: #1565c0 !important;
+}
+/* ============================================
+   RESPONSIVE - TABLET VIEW
+   ============================================ */
+@media (max-width: 1024px) {
+    .loginBrandPanel {
+        padding: 2rem !important;
+    }
+    .loginFormPanel {
+        padding: 2rem !important;
+    }
+    .loginFormCard {
+        padding: 2rem !important;
+    }
+    .brandTitle .sapMTitle {
+        font-size: 2rem !important;
+    }
+}
+/* ============================================
+   RESPONSIVE - MOBILE VIEW
+   ============================================ */
+@media (max-width: 768px) {
+    .loginPageWrapper {
+        flex-direction: column !important;
+    }
+    .loginBrandPanel {
+        width: 100% !important;
+        min-height: auto !important;
+        padding: 2rem 1.5rem !important;
+    }
+    .brandFeatures {
+        display: none !important;
+    }
+    .brandTitle .sapMTitle {
+        font-size: 1.8rem !important;
+    }
+    .brandSubText .sapMText {
+        font-size: 0.9rem !important;
+    }
+    .loginFormPanel {
+        width: 100% !important;
+        min-height: auto !important;
+        padding: 2rem 1.5rem !important;
+    }
+    .loginFormCard {
+        padding: 1.5rem !important;
+        box-shadow: none !important;
+        border-radius: 12px !important;
+    }
+    .formTitle .sapMTitle {
+        font-size: 1.5rem !important;
+    }
+    .loginBtn .sapMBtnInner {
+        height: 44px !important;
+        font-size: 0.95rem !important;
+    }
+}
+/* ============================================
+   RESPONSIVE - SMALL MOBILE VIEW
+   ============================================ */
+@media (max-width: 480px) {
+    .loginBrandPanel {
+        padding: 1.5rem 1rem !important;
+    }
+    .loginFormPanel {
+        padding: 1.5rem 1rem !important;
+    }
+    .loginFormCard {
+        padding: 1.2rem !important;
+    }
+    .brandTitle .sapMTitle {
+        font-size: 1.5rem !important;
+    }
+    .formTitle .sapMTitle {
+        font-size: 1.3rem !important;
+    }
+    .formSubTitle .sapMText {
+        font-size: 0.8rem !important;
+    }
+    .roleSegmentedBtn .sapMSegB {
+        border-radius: 6px !important;
+    }
+    .loginBtn .sapMBtnInner {
+        height: 42px !important;
+        border-radius: 6px !important;
+    }
+}
+
+/* ============================================
+   DASHBOARD STYLES
+   ============================================ */
+.dashWrapper {
+    padding: 2rem;
+    background-color: #f5f6fa;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+/* Header */
+.dashHeader {
+    margin-bottom: 2rem;
+    width: 100%;
+}
+.dashTitle .sapMTitle {
+    font-size: 1.8rem !important;
+    font-weight: 700 !important;
+    color: #1a237e !important;
+}
+.dashSubTitle {
+    color: #6b7280 !important;
+    font-size: 0.9rem !important;
+    margin-top: 0.25rem !important;
+}
+.dashDateText {
+    color: #374151 !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+}
+/* KPI Row */
+.kpiRow {
+    width: 100%;
+    margin-bottom: 1.5rem !important;
+    gap: 1rem;
+}
+.kpiCard {
+    flex: 1;
+    min-width: 180px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e5e7eb;
+    box-sizing: border-box;
+    gap: 0.5rem;
+}
+.kpiCardTitle {
+    color: #6b7280 !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.05em !important;
+}
+.kpiCardValue .sapMTitle {
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    color: #1a237e !important;
+    line-height: 1.2 !important;
+}
+.kpiCardSubText {
+    color: #6b7280 !important;
+    font-size: 0.875rem !important;
+}
+/* KPI Icons */
+.kpiIconBlue {
+    color: #1a237e !important;
+    font-size: 1.8rem !important;
+}
+.kpiIconGreen {
+    color: #166534 !important;
+    font-size: 1.8rem !important;
+}
+.kpiIconOrange {
+    color: #c2410c !important;
+    font-size: 1.8rem !important;
+}
+/* Dashboard Rows */
+.dashRow {
+    width: 100%;
+    margin-bottom: 1.5rem !important;
+    gap: 1rem;
+}
+/* Dashboard Card */
+.dashCard {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e5e7eb;
+    box-sizing: border-box;
+}
+/* Half Card - Two per row */
+.dashHalfCard {
+    flex: 1;
+    min-width: 280px;
+}
+.dashCardHeader {
+    margin-bottom: 1rem !important;
+    padding-bottom: 1rem !important;
+    border-bottom: 1px solid #e5e7eb !important;
+    width: 100%;
+}
+.dashCardTitle .sapMTitle {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: #1a237e !important;
+}
+/* Activity List */
+.activityItem {
+    padding: 0.75rem 0 !important;
+    width: 100%;
+}
+.activityEmpName {
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    color: #111827 !important;
+}
+.activityDate {
+    font-size: 0.8rem !important;
+    color: #6b7280 !important;
+    margin-top: 0.2rem !important;
+}
+/* Approval List */
+.approvalItem {
+    padding: 0.75rem 0 !important;
+    width: 100%;
+    gap: 0.5rem;
+}
+.approvalEmpName {
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    color: #111827 !important;
+}
+.approvalLeaveType {
+    font-size: 0.8rem !important;
+    color: #1a237e !important;
+    font-weight: 600 !important;
+}
+.approvalReason {
+    font-size: 0.875rem !important;
+    color: #6b7280 !important;
+    margin-top: 0.5rem !important;
+}
+.approvalActions {
+    width: 100%;
+    margin-top: 0.75rem !important;
+    padding-top: 0.75rem !important;
+    border-top: 1px solid #e5e7eb !important;
+    gap: 0.5rem;
+}
+.approvalBtn.sapMBtn {
+    flex: 1 !important;
+}
+.approvalBtn .sapMBtnInner {
+    width: 100% !important;
+    border-radius: 6px !important;
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+}
+/* ============================================
+   RESPONSIVE - TABLET VIEW
+   ============================================ */
+@media (max-width: 1024px) {
+    .dashWrapper {
+        padding: 1.5rem !important;
+    }
+    .kpiCard {
+        min-width: 150px !important;
+        padding: 1.2rem !important;
+    }
+    .kpiCardValue .sapMTitle {
+        font-size: 2rem !important;
+    }
+    .dashHalfCard {
+        min-width: 240px !important;
+    }
+}
+/* ============================================
+   RESPONSIVE - MOBILE VIEW
+   ============================================ */
+@media (max-width: 768px) {
+    .dashWrapper {
+        padding: 1rem !important;
+    }
+    .dashHeader {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.5rem !important;
+        margin-bottom: 1rem !important;
+    }
+    .dashTitle .sapMTitle {
+        font-size: 1.4rem !important;
+    }
+    .kpiRow {
+        flex-direction: column !important;
+    }
+    .kpiCard {
+        width: 100% !important;
+        min-width: unset !important;
+    }
+    .kpiCardValue .sapMTitle {
+        font-size: 1.8rem !important;
+    }
+    .dashRow {
+        flex-direction: column !important;
+    }
+    .dashHalfCard {
+        width: 100% !important;
+        min-width: unset !important;
+    }
+    .dashCard {
+        padding: 1rem !important;
+    }
+}
+/* ============================================
+   RESPONSIVE - SMALL MOBILE VIEW
+   ============================================ */
+@media (max-width: 480px) {
+    .dashWrapper {
+        padding: 0.75rem !important;
+    }
+    .dashCard {
+        padding: 0.75rem !important;
+        border-radius: 8px !important;
+    }
+    .kpiCard {
+        padding: 0.75rem !important;
+        border-radius: 8px !important;
+    }
+    .kpiCardValue .sapMTitle {
+        font-size: 1.5rem !important;
+    }
+    .kpiCardTitle {
+        font-size: 0.7rem !important;
+    }
+    .kpiCardSubText {
+        font-size: 0.75rem !important;
+    }
+    .kpiIconBlue,
+    .kpiIconGreen,
+    .kpiIconOrange {
+        font-size: 1.4rem !important;
+    }
+    .dashCardTitle .sapMTitle {
+        font-size: 0.9rem !important;
+    }
+    .activityEmpName {
+        font-size: 0.875rem !important;
+    }
+    .activityDate {
+        font-size: 0.75rem !important;
+    }
+    .approvalEmpName {
+        font-size: 0.875rem !important;
+    }
+    .approvalLeaveType {
+        font-size: 0.75rem !important;
+    }
+    .approvalReason {
+        font-size: 0.8rem !important;
+    }
+    .approvalBtn .sapMBtnInner {
+        font-size: 0.8rem !important;
+        height: 36px !important;
+    }
+}

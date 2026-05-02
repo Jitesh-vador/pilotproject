@@ -20,6 +20,14 @@
           "odataVersion": "4.0",
           "localUri": "localService/metadata_leave.xml"
         }
+      },
+      "hrAttendanceService": {
+          "uri": "/sap/opu/odata/hr/HRService/",
+          "type": "OData",
+          "settings": {
+              "odataVersion": "2.0",
+              "localUri": "localService/metadata.xml"
+          }
       }
     }
   },
@@ -64,6 +72,14 @@
           "autoExpandSelect": true,
           "earlyRequests": true
         }
+      },
+      "HRModel": {
+          "dataSource": "hrAttendanceService",
+          "settings": {
+              "defaultBindingMode": "TwoWay",
+              "defaultCountMode": "Inline",
+              "refreshAfterChange": true
+          }
       }
     },
     "routing": {

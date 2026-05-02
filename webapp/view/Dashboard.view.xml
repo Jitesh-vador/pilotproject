@@ -2,124 +2,282 @@
     controllerName="com.hr.portal.controller.Dashboard"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
+    xmlns:core="sap.ui.core"
     xmlns:layout="sap.ui.layout"
     xmlns:viz="sap.viz.ui5.controls"
-    xmlns:viz.data="sap.viz.ui5.data"
-    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds">
-    <Page title="HR Overview" backgroundDesign="Transparent" showHeader="false">
+    xmlns:vizData="sap.viz.ui5.data"
+    xmlns:vizFeeds="sap.viz.ui5.controls.common.feeds"
+    displayBlock="true">
+    <Page
+        showHeader="false"
+        backgroundDesign="Transparent">
         <content>
-            <VBox width="100%" class="sapUiSmallMargin">
-                <Title text="HR Management Dashboard" class="sapUiMediumMarginBottom" />
-
-                <!-- KPI Tiles -->
-                <HBox width="100%" justifyContent="SpaceBetween" class="sapUiSmallMarginBottom">
-                    <GenericTile header="Pending Leaves" subheader="Action Required">
-                        <TileContent footer="{dashLocal>/PendingCount}">
-                            <ImageContent src="sap-icon://calendar" />
-                        </TileContent>
-                    </GenericTile>
-                    <GenericTile header="Total Headcount" subheader="Active Employees">
-                        <TileContent footer="{dashLocal>/TotalHeadcount}">
-                            <ImageContent src="sap-icon://group" />
-                        </TileContent>
-                    </GenericTile>
-                    <GenericTile header="Attendance Alerts" subheader="Late/Absent Today">
-                        <TileContent footer="{dashLocal>/AttendanceAlerts}">
-                            <ImageContent src="sap-icon://alert" />
-                        </TileContent>
-                    </GenericTile>
-                </HBox>
-
-                <layout:Grid defaultSpan="L12 M12 S12" hSpacing="1" vSpacing="0">
+            <VBox class="dashWrapper">
+                <!-- Page Header -->
+                <HBox
+                    justifyContent="SpaceBetween"
+                    alignItems="Center"
+                    class="dashHeader">
                     <VBox>
-                        <layoutData><layout:GridData span="L8 M12 S12" /></layoutData>
-                        
-                        <!-- Recent Activity List (Absent/Late) -->
-                        <VBox class="sapUiSmallMarginBottom" style="background: white; border-radius: 8px; border: 1px solid #ddd;">
-                            <Title text="Recent Activity (Late/Absent)" class="sapUiSmallMargin" />
-                            <List items="{dashLocal>/AttendanceList}" noDataText="No critical attendance issues">
-                                <CustomListItem>
-                                    <HBox alignItems="Center" justifyContent="SpaceBetween" class="sapUiSmallMargin">
-                                        <HBox alignItems="Center">
-                                            <Avatar src="sap-icon://person-placeholder" displaySize="S" class="sapUiSmallMarginEnd" />
-                                            <VBox>
-                                                <Text text="{dashLocal>EmpName}" style="font-weight: bold;" />
-                                                <Text text="Date: {dashLocal>Date}" />
-                                            </VBox>
-                                        </HBox>
-                                        <ObjectStatus text="{dashLocal>Status}" state="Error" />
-                                    </HBox>
-                                </CustomListItem>
-                            </List>
-                        </VBox>
-
-                        <HBox justifyContent="SpaceBetween" width="100%">
-                            <!-- 1. Dept Distribution (Pie) -->
-                            <VBox style="background: white; padding: 1rem; border-radius: 8px;">
-                        <Title text="Employee Distribution by Department" class="sapUiTinyMarginBottom" />
-                        <viz:VizFrame vizType="pie" width="100%" height="300px">
-                            <viz:dataset>
-                                <viz.data:FlattenedDataset data="{dashLocal>/DeptDistribution}">
-                                    <viz.data:dimensions>
-                                        <viz.data:DimensionDefinition name="Dept" value="{dashLocal>Dept}" />
-                                    </viz.data:dimensions>
-                                    <viz.data:measures>
-                                        <viz.data:MeasureDefinition name="Count" value="{dashLocal>Count}" />
-                                    </viz.data:measures>
-                                </viz.data:FlattenedDataset>
-                            </viz:dataset>
-                            <viz:feeds>
-                                <viz.feeds:FeedItem uid="size" type="Measure" values="Count" />
-                                <viz.feeds:FeedItem uid="color" type="Dimension" values="Dept" />
-                            </viz:feeds>
-                        </viz:VizFrame>
+                        <Title
+                            text="HR Management Dashboard"
+                            level="H2"
+                            class="dashTitle"/>
+                        <Text
+                            text="Welcome back, HR Admin"
+                            class="dashSubTitle"/>
                     </VBox>
-                            <!-- 2. Leave Trend (Line) -->
-                            <VBox style="background: white; padding: 1rem; border-radius: 8px;">
-                        <Title text="Monthly Leave Requests" class="sapUiTinyMarginBottom" />
-                        <viz:VizFrame id="idBarChart" vizType="column" width="100%" height="300px"
-    vizProperties="{ 
-        'plotArea': { 'dataLabel': { 'visible': true } },
-        'valueAxis': { 'title': { 'visible': false }, 'label': { 'formatString': '0' } },
-        'categoryAxis': { 'title': { 'visible': false } }
-    }">
-    <viz:dataset>
-        <viz.data:FlattenedDataset data="{dashLocal>/MonthlyLeaveTrend}">
-            <viz.data:dimensions>
-                <viz.data:DimensionDefinition name="Month" value="{dashLocal>Month}" />
-            </viz.data:dimensions>
-            <viz.data:measures>
-                <viz.data:MeasureDefinition name="Requests" value="{dashLocal>Count}" />
-            </viz.data:measures>
-        </viz.data:FlattenedDataset>
-    </viz:dataset>
-    <viz:feeds>
-        <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Requests" />
-        <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Month" />
-    </viz:feeds>
-</viz:VizFrame>
-                    </VBox>
+                    <Text
+                        text="May 2025"
+                        class="dashDateText"/>
+                </HBox>
+                <!-- KPI Row -->
+                <HBox
+                    justifyContent="SpaceBetween"
+                    wrap="Wrap"
+                    class="kpiRow">
+                    <VBox class="kpiCard">
+                        <HBox
+                            justifyContent="SpaceBetween"
+                            alignItems="Center">
+                            <Text
+                                text="PENDING LEAVES"
+                                class="kpiCardTitle"/>
+                            <core:Icon
+                                src="sap-icon://calendar"
+                                class="kpiIconBlue"/>
                         </HBox>
+                        <Title
+                            text="{dashLocal>/PendingCount}"
+                            level="H1"
+                            class="kpiCardValue"/>
+                        <Text
+                            text="Action Required"
+                            class="kpiCardSubText"/>
                     </VBox>
-
-                    <!-- Pending Approvals Sidebar -->
-                    <VBox style="background: white; border-radius: 8px; border: 1px solid #ddd;">
-                        <layoutData><layout:GridData span="L4 M12 S12" /></layoutData>
-                        <Title text="Pending Approvals" class="sapUiSmallMargin" />
-                        <List items="{path: 'leaveModel>/LeaveRequests', filters: [{path: 'Status', operator: 'EQ', value1: 'Pending'}]}">
+                    <VBox class="kpiCard">
+                        <HBox
+                            justifyContent="SpaceBetween"
+                            alignItems="Center">
+                            <Text
+                                text="TOTAL HEADCOUNT"
+                                class="kpiCardTitle"/>
+                            <core:Icon
+                                src="sap-icon://group"
+                                class="kpiIconGreen"/>
+                        </HBox>
+                        <Title
+                            text="{dashLocal>/TotalHeadcount}"
+                            level="H1"
+                            class="kpiCardValue"/>
+                        <Text
+                            text="Active Employees"
+                            class="kpiCardSubText"/>
+                    </VBox>
+                    <VBox class="kpiCard">
+                        <HBox
+                            justifyContent="SpaceBetween"
+                            alignItems="Center">
+                            <Text
+                                text="ATTENDANCE ALERTS"
+                                class="kpiCardTitle"/>
+                            <core:Icon
+                                src="sap-icon://alert"
+                                class="kpiIconOrange"/>
+                        </HBox>
+                        <Title
+                            text="{dashLocal>/AttendanceAlerts}"
+                            level="H1"
+                            class="kpiCardValue"/>
+                        <Text
+                            text="Late or Absent Today"
+                            class="kpiCardSubText"/>
+                    </VBox>
+                </HBox>
+                <!-- Row 1: Recent Activity + Pending Approvals -->
+                <HBox
+                    justifyContent="SpaceBetween"
+                    wrap="Wrap"
+                    class="dashRow">
+                    <!-- Recent Activity -->
+                    <VBox class="dashCard dashHalfCard">
+                        <HBox
+                            justifyContent="SpaceBetween"
+                            alignItems="Center"
+                            class="dashCardHeader">
+                            <Title
+                                text="Recent Activity"
+                                level="H4"
+                                class="dashCardTitle"/>
+                            <ObjectStatus
+                                text="Late / Absent"
+                                state="Error"/>
+                        </HBox>
+                        <List
+                            items="{dashLocal>/AttendanceList}"
+                            noDataText="No critical attendance issues"
+                            showSeparators="Inner">
                             <CustomListItem>
-                                <VBox class="sapUiSmallMargin">
-                                    <Text text="{leaveModel>EmpName}" style="font-weight: bold;" />
-                                    <Text text="{leaveModel>LeaveType}: {leaveModel>LeaveReason}" />
-                                    <HBox justifyContent="SpaceBetween" class="sapUiTinyMarginTop">
-                                        <Button text="Approve" type="Accept" />
-                                        <Button text="Reject" type="Reject" />
+                                <HBox
+                                    alignItems="Center"
+                                    justifyContent="SpaceBetween"
+                                    class="activityItem">
+                                    <HBox alignItems="Center">
+                                        <Avatar
+                                            initials="E"
+                                            displaySize="S"
+                                            class="sapUiSmallMarginEnd"/>
+                                        <VBox>
+                                            <Text
+                                                text="{dashLocal>EmpName}"
+                                                class="activityEmpName"/>
+                                            <Text
+                                                text="{dashLocal>Date}"
+                                                class="activityDate"/>
+                                        </VBox>
+                                    </HBox>
+                                    <ObjectStatus
+                                        text="{dashLocal>Status}"
+                                        state="Error"/>
+                                </HBox>
+                            </CustomListItem>
+                        </List>
+                    </VBox>
+                    <!-- Pending Approvals -->
+                    <VBox class="dashCard dashHalfCard">
+                        <HBox
+                            justifyContent="SpaceBetween"
+                            alignItems="Center"
+                            class="dashCardHeader">
+                            <Title
+                                text="Pending Approvals"
+                                level="H4"
+                                class="dashCardTitle"/>
+                            <ObjectStatus
+                                text="Pending"
+                                state="Warning"/>
+                        </HBox>
+                        <List
+                            items="{path: 'leaveModel>/LeaveRequests', filters: [{path: 'Status', operator: 'EQ', value1: 'Pending'}]}"
+                            noDataText="No pending approvals"
+                            showSeparators="Inner">
+                            <CustomListItem>
+                                <VBox class="approvalItem">
+                                    <HBox alignItems="Center">
+                                        <Avatar
+                                            initials="E"
+                                            displaySize="S"
+                                            class="sapUiSmallMarginEnd"/>
+                                        <VBox>
+                                            <Text
+                                                text="{leaveModel>EmpName}"
+                                                class="approvalEmpName"/>
+                                            <Text
+                                                text="{leaveModel>LeaveType}"
+                                                class="approvalLeaveType"/>
+                                        </VBox>
+                                    </HBox>
+                                    <Text
+                                        text="{leaveModel>LeaveReason}"
+                                        class="approvalReason"/>
+                                    <HBox
+                                        justifyContent="SpaceBetween"
+                                        class="approvalActions">
+                                        <Button
+                                            text="Approve"
+                                            type="Accept"
+                                            class="approvalBtn"/>
+                                        <Button
+                                            text="Reject"
+                                            type="Reject"
+                                            class="approvalBtn"/>
                                     </HBox>
                                 </VBox>
                             </CustomListItem>
                         </List>
                     </VBox>
-                </layout:Grid>
+                </HBox>
+                <!-- Row 2: Pie Chart + Bar Chart -->
+                <HBox
+                    justifyContent="SpaceBetween"
+                    wrap="Wrap"
+                    class="dashRow">
+                    <!-- Pie Chart -->
+                    <VBox class="dashCard dashHalfCard">
+                        <Title
+                            text="Department Distribution"
+                            level="H4"
+                            class="dashCardTitle sapUiSmallMarginBottom"/>
+                        <viz:VizFrame
+                            vizType="pie"
+                            width="100%"
+                            height="300px">
+                            <viz:dataset>
+                                <vizData:FlattenedDataset
+                                    data="{dashLocal>/DeptDistribution}">
+                                    <vizData:dimensions>
+                                        <vizData:DimensionDefinition
+                                            name="Dept"
+                                            value="{dashLocal>Dept}"/>
+                                    </vizData:dimensions>
+                                    <vizData:measures>
+                                        <vizData:MeasureDefinition
+                                            name="Count"
+                                            value="{dashLocal>Count}"/>
+                                    </vizData:measures>
+                                </vizData:FlattenedDataset>
+                            </viz:dataset>
+                            <viz:feeds>
+                                <vizFeeds:FeedItem
+                                    uid="size"
+                                    type="Measure"
+                                    values="Count"/>
+                                <vizFeeds:FeedItem
+                                    uid="color"
+                                    type="Dimension"
+                                    values="Dept"/>
+                            </viz:feeds>
+                        </viz:VizFrame>
+                    </VBox>
+                    <!-- Bar Chart -->
+                    <VBox class="dashCard dashHalfCard">
+                        <Title
+                            text="Monthly Leave Requests"
+                            level="H4"
+                            class="dashCardTitle sapUiSmallMarginBottom"/>
+                        <viz:VizFrame
+                            id="idBarChart"
+                            vizType="column"
+                            width="100%"
+                            height="300px">
+                            <viz:dataset>
+                                <vizData:FlattenedDataset
+                                    data="{dashLocal>/MonthlyLeaveTrend}">
+                                    <vizData:dimensions>
+                                        <vizData:DimensionDefinition
+                                            name="Month"
+                                            value="{dashLocal>Month}"/>
+                                    </vizData:dimensions>
+                                    <vizData:measures>
+                                        <vizData:MeasureDefinition
+                                            name="Requests"
+                                            value="{dashLocal>Count}"/>
+                                    </vizData:measures>
+                                </vizData:FlattenedDataset>
+                            </viz:dataset>
+                            <viz:feeds>
+                                <vizFeeds:FeedItem
+                                    uid="valueAxis"
+                                    type="Measure"
+                                    values="Requests"/>
+                                <vizFeeds:FeedItem
+                                    uid="categoryAxis"
+                                    type="Dimension"
+                                    values="Month"/>
+                            </viz:feeds>
+                        </viz:VizFrame>
+                    </VBox>
+                </HBox>
             </VBox>
         </content>
     </Page>

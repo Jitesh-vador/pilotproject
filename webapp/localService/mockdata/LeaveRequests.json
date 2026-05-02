@@ -1,0 +1,16 @@
+[
+    {
+        "LeaveId": "LR001",
+        "LeaveType": "Sick",
+        "DateRange": "May 03, 2025",
+        "Reason": "Fever and cold",
+        "Status": "Approved"
+    },
+    {
+        "LeaveId": "LR002",
+        "LeaveType": "Vacation",
+        "DateRange": "May 10 - May 12, 2025",
+        "Reason": "Family vacation",
+        "Status": "Pending"
+    }
+]
